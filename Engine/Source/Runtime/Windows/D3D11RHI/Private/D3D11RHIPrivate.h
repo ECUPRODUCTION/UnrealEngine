@@ -88,35 +88,35 @@ struct Intel_MetricsDiscovery_ContextData
 /**
  * The D3D RHI stats.
  */
-DECLARE_CYCLE_STAT_EXTERN(TEXT("Present time"),STAT_D3D11PresentTime,STATGROUP_D3D11RHI, );
+DECLARE_CYCLE_STAT_EXTERN(TEXT("Present time"), STAT_D3D11PresentTime, STATGROUP_D3D11RHI, );
 DECLARE_CYCLE_STAT_EXTERN(TEXT("CustomPresent time"), STAT_D3D11CustomPresentTime, STATGROUP_D3D11RHI, );
-DECLARE_CYCLE_STAT_EXTERN(TEXT("CreateTexture time"),STAT_D3D11CreateTextureTime,STATGROUP_D3D11RHI, );
-DECLARE_CYCLE_STAT_EXTERN(TEXT("LockTexture time"),STAT_D3D11LockTextureTime,STATGROUP_D3D11RHI, );
-DECLARE_CYCLE_STAT_EXTERN(TEXT("UnlockTexture time"),STAT_D3D11UnlockTextureTime,STATGROUP_D3D11RHI, );
-DECLARE_CYCLE_STAT_EXTERN(TEXT("CopyTexture time"),STAT_D3D11CopyTextureTime,STATGROUP_D3D11RHI, );
-DECLARE_CYCLE_STAT_EXTERN(TEXT("CreateBoundShaderState time"),STAT_D3D11CreateBoundShaderStateTime,STATGROUP_D3D11RHI, );
-DECLARE_CYCLE_STAT_EXTERN(TEXT("New bound shader state time"),STAT_D3D11NewBoundShaderStateTime,STATGROUP_D3D11RHI, );
-DECLARE_CYCLE_STAT_EXTERN(TEXT("Clean uniform buffer pool"),STAT_D3D11CleanUniformBufferTime,STATGROUP_D3D11RHI, );
-DECLARE_CYCLE_STAT_EXTERN(TEXT("Clear shader resources"),STAT_D3D11ClearShaderResourceTime,STATGROUP_D3D11RHI, );
-DECLARE_DWORD_ACCUMULATOR_STAT_EXTERN(TEXT("Uniform buffer pool num free"),STAT_D3D11NumFreeUniformBuffers,STATGROUP_D3D11RHI, );
+DECLARE_CYCLE_STAT_EXTERN(TEXT("CreateTexture time"), STAT_D3D11CreateTextureTime, STATGROUP_D3D11RHI, );
+DECLARE_CYCLE_STAT_EXTERN(TEXT("LockTexture time"), STAT_D3D11LockTextureTime, STATGROUP_D3D11RHI, );
+DECLARE_CYCLE_STAT_EXTERN(TEXT("UnlockTexture time"), STAT_D3D11UnlockTextureTime, STATGROUP_D3D11RHI, );
+DECLARE_CYCLE_STAT_EXTERN(TEXT("CopyTexture time"), STAT_D3D11CopyTextureTime, STATGROUP_D3D11RHI, );
+DECLARE_CYCLE_STAT_EXTERN(TEXT("CreateBoundShaderState time"), STAT_D3D11CreateBoundShaderStateTime, STATGROUP_D3D11RHI, );
+DECLARE_CYCLE_STAT_EXTERN(TEXT("New bound shader state time"), STAT_D3D11NewBoundShaderStateTime, STATGROUP_D3D11RHI, );
+DECLARE_CYCLE_STAT_EXTERN(TEXT("Clean uniform buffer pool"), STAT_D3D11CleanUniformBufferTime, STATGROUP_D3D11RHI, );
+DECLARE_CYCLE_STAT_EXTERN(TEXT("Clear shader resources"), STAT_D3D11ClearShaderResourceTime, STATGROUP_D3D11RHI, );
+DECLARE_DWORD_ACCUMULATOR_STAT_EXTERN(TEXT("Uniform buffer pool num free"), STAT_D3D11NumFreeUniformBuffers, STATGROUP_D3D11RHI, );
 DECLARE_DWORD_ACCUMULATOR_STAT_EXTERN(TEXT("Num Bound Shader State"), STAT_D3D11NumBoundShaderState, STATGROUP_D3D11RHI, );
 DECLARE_MEMORY_STAT_EXTERN(TEXT("Uniform buffer pool memory"), STAT_D3D11FreeUniformBufferMemory, STATGROUP_D3D11RHI, );
-DECLARE_CYCLE_STAT_EXTERN(TEXT("Update uniform buffer"),STAT_D3D11UpdateUniformBufferTime,STATGROUP_D3D11RHI, );
-DECLARE_DWORD_COUNTER_STAT_EXTERN(TEXT("Textures Allocated"),STAT_D3D11TexturesAllocated,STATGROUP_D3D11RHI, );
-DECLARE_DWORD_COUNTER_STAT_EXTERN(TEXT("Textures Released"),STAT_D3D11TexturesReleased,STATGROUP_D3D11RHI, );
-DECLARE_MEMORY_STAT_EXTERN(TEXT("Texture object pool memory"),STAT_D3D11TexturePoolMemory,STATGROUP_D3D11RHI, );
+DECLARE_CYCLE_STAT_EXTERN(TEXT("Update uniform buffer"), STAT_D3D11UpdateUniformBufferTime, STATGROUP_D3D11RHI, );
+DECLARE_DWORD_COUNTER_STAT_EXTERN(TEXT("Textures Allocated"), STAT_D3D11TexturesAllocated, STATGROUP_D3D11RHI, );
+DECLARE_DWORD_COUNTER_STAT_EXTERN(TEXT("Textures Released"), STAT_D3D11TexturesReleased, STATGROUP_D3D11RHI, );
+DECLARE_MEMORY_STAT_EXTERN(TEXT("Texture object pool memory"), STAT_D3D11TexturePoolMemory, STATGROUP_D3D11RHI, );
 
 struct FD3D11GlobalStats
 {
 	// in bytes, never change after RHI, needed to scale game features
 	static int64 GDedicatedVideoMemory;
-	
+
 	// in bytes, never change after RHI, needed to scale game features
 	static int64 GDedicatedSystemMemory;
-	
+
 	// in bytes, never change after RHI, needed to scale game features
 	static int64 GSharedSystemMemory;
-	
+
 	// In bytes. Never changed after RHI init. Our estimate of the amount of memory that we can use for graphics resources in total.
 	static int64 GTotalGraphicsMemory;
 };
@@ -233,8 +233,8 @@ public:
 		Timing.ReleaseResource();  // can't do this from the RHI thread
 	}
 
-	/** 
-	 * Returns the time in ms that the GPU spent in this draw event.  
+	/**
+	 * Returns the time in ms that the GPU spent in this draw event.
 	 * This blocks the CPU if necessary, so can cause hitching.
 	 */
 	virtual float GetTiming() override;
@@ -291,8 +291,8 @@ public:
 	FD3D11DisjointTimeStampQuery DisjointQuery;
 };
 
-/** 
- * Encapsulates GPU profiling logic and data. 
+/**
+ * Encapsulates GPU profiling logic and data.
  * There's only one global instance of this struct so it should only contain global data, nothing specific to a frame.
  */
 struct FD3DGPUProfiler : public FGPUProfiler
@@ -338,10 +338,10 @@ public:
 	friend class FD3D11Viewport;
 
 	/** Global D3D11 lock list */
-	TMap<FD3D11LockedKey,FD3D11LockedData> OutstandingLocks;
+	TMap<FD3D11LockedKey, FD3D11LockedData> OutstandingLocks;
 
 	/** Initialization constructor. */
-	FD3D11DynamicRHI(IDXGIFactory1* InDXGIFactory1,D3D_FEATURE_LEVEL InFeatureLevel,int32 InChosenAdapter, const DXGI_ADAPTER_DESC& ChosenDescription);
+	FD3D11DynamicRHI(IDXGIFactory1* InDXGIFactory1, D3D_FEATURE_LEVEL InFeatureLevel, int32 InChosenAdapter, const DXGI_ADAPTER_DESC& ChosenDescription);
 
 	/** Destructor */
 	virtual ~FD3D11DynamicRHI();
@@ -375,7 +375,7 @@ public:
 	 * @param QueryType e.g. RQT_Occlusion or RQT_AbsoluteTime
 	 * @return true if the query finished.
 	 */
-	bool GetQueryData(ID3D11Query* Query,void* Data,SIZE_T DataSize,bool bWait, ERenderQueryType QueryType);
+	bool GetQueryData(ID3D11Query* Query, void* Data, SIZE_T DataSize, bool bWait, ERenderQueryType QueryType);
 
 	virtual void RHIBeginUpdateMultiFrameResource(FTextureRHIParamRef Texture) override;
 	virtual void RHIEndUpdateMultiFrameResource(FTextureRHIParamRef Texture) override;
@@ -396,9 +396,9 @@ public:
 	virtual FGeometryShaderRHIRef RHICreateGeometryShaderWithStreamOutput(const TArray<uint8>& Code, const FStreamOutElementList& ElementList, uint32 NumStrides, const uint32* Strides, int32 RasterizedStream) final override;
 	virtual FComputeShaderRHIRef RHICreateComputeShader(const TArray<uint8>& Code) final override;
 	virtual FStagingBufferRHIRef RHICreateStagingBuffer(FVertexBufferRHIParamRef VertexBuffer) final override;
-    virtual void RHIEnqueueStagedRead(FStagingBufferRHIParamRef StagingBuffer, FGPUFenceRHIParamRef Fence, uint32 Offset, uint32 NumBytes) final override;
+	virtual void RHIEnqueueStagedRead(FStagingBufferRHIParamRef StagingBuffer, FGPUFenceRHIParamRef Fence, uint32 Offset, uint32 NumBytes) final override;
 	virtual void* RHILockStagingBuffer(FStagingBufferRHIParamRef StagingBuffer, uint32 Offset, uint32 SizeRHI) final override;
-    virtual void RHIUnlockStagingBuffer(FStagingBufferRHIParamRef StagingBuffer) final override;
+	virtual void RHIUnlockStagingBuffer(FStagingBufferRHIParamRef StagingBuffer) final override;
 	virtual FBoundShaderStateRHIRef RHICreateBoundShaderState(FVertexDeclarationRHIParamRef VertexDeclaration, FVertexShaderRHIParamRef VertexShader, FHullShaderRHIParamRef HullShader, FDomainShaderRHIParamRef DomainShader, FPixelShaderRHIParamRef PixelShader, FGeometryShaderRHIParamRef GeometryShader) final override;
 	virtual FUniformBufferRHIRef RHICreateUniformBuffer(const void* Contents, const FRHIUniformBufferLayout& Layout, EUniformBufferUsage Usage) final override;
 	virtual FIndexBufferRHIRef RHICreateIndexBuffer(uint32 Stride, uint32 Size, uint32 InUsage, FRHIResourceCreateInfo& CreateInfo) final override;
@@ -407,7 +407,7 @@ public:
 	virtual FVertexBufferRHIRef RHICreateVertexBuffer(uint32 Size, uint32 InUsage, FRHIResourceCreateInfo& CreateInfo) final override;
 	virtual void* RHILockVertexBuffer(FVertexBufferRHIParamRef VertexBuffer, uint32 Offset, uint32 SizeRHI, EResourceLockMode LockMode) final override;
 	virtual void RHIUnlockVertexBuffer(FVertexBufferRHIParamRef VertexBuffer) final override;
-	virtual void RHICopyVertexBuffer(FVertexBufferRHIParamRef SourceBuffer,FVertexBufferRHIParamRef DestBuffer) final override;
+	virtual void RHICopyVertexBuffer(FVertexBufferRHIParamRef SourceBuffer, FVertexBufferRHIParamRef DestBuffer) final override;
 	virtual FStructuredBufferRHIRef RHICreateStructuredBuffer(uint32 Stride, uint32 Size, uint32 InUsage, FRHIResourceCreateInfo& CreateInfo) final override;
 	virtual void* RHILockStructuredBuffer(FStructuredBufferRHIParamRef StructuredBuffer, uint32 Offset, uint32 SizeRHI, EResourceLockMode LockMode) final override;
 	virtual void RHIUnlockStructuredBuffer(FStructuredBufferRHIParamRef StructuredBuffer) final override;
@@ -422,7 +422,7 @@ public:
 	virtual uint64 RHICalcTexture3DPlatformSize(uint32 SizeX, uint32 SizeY, uint32 SizeZ, uint8 Format, uint32 NumMips, uint32 Flags, uint32& OutAlign) final override;
 	virtual uint64 RHICalcTextureCubePlatformSize(uint32 Size, uint8 Format, uint32 NumMips, uint32 Flags, uint32& OutAlign) final override;
 	virtual void RHIGetTextureMemoryStats(FTextureMemoryStats& OutStats) final override;
-	virtual bool RHIGetTextureMemoryVisualizeData(FColor* TextureData,int32 SizeX,int32 SizeY,int32 Pitch,int32 PixelSize) final override;
+	virtual bool RHIGetTextureMemoryVisualizeData(FColor* TextureData, int32 SizeX, int32 SizeY, int32 Pitch, int32 PixelSize) final override;
 	virtual FTextureReferenceRHIRef RHICreateTextureReference(FLastRenderTimeContainer* LastRenderTime) final override;
 	virtual void RHIUpdateTextureReference(FTextureReferenceRHIParamRef TextureRef, FTextureRHIParamRef NewTexture) final override;
 	virtual FTexture2DRHIRef RHICreateTexture2D(uint32 SizeX, uint32 SizeY, uint8 Format, uint32 NumMips, uint32 NumSamples, uint32 Flags, FRHIResourceCreateInfo& CreateInfo) final override;
@@ -453,12 +453,12 @@ public:
 	virtual void RHIUnlockTextureCubeFace(FTextureCubeRHIParamRef Texture, uint32 FaceIndex, uint32 ArrayIndex, uint32 MipIndex, bool bLockWithinMiptail) final override;
 	virtual void RHIBindDebugLabelName(FTextureRHIParamRef Texture, const TCHAR* Name) final override;
 	virtual void RHIBindDebugLabelName(FUnorderedAccessViewRHIParamRef UnorderedAccessViewRHI, const TCHAR* Name) final override;
-	virtual void RHIReadSurfaceData(FTextureRHIParamRef Texture,FIntRect Rect,TArray<FColor>& OutData,FReadSurfaceDataFlags InFlags) final override;
+	virtual void RHIReadSurfaceData(FTextureRHIParamRef Texture, FIntRect Rect, TArray<FColor>& OutData, FReadSurfaceDataFlags InFlags) final override;
 	virtual void RHIReadSurfaceData(FTextureRHIParamRef TextureRHI, FIntRect InRect, TArray<FLinearColor>& OutData, FReadSurfaceDataFlags InFlags) final override;
-	virtual void RHIMapStagingSurface(FTextureRHIParamRef Texture,void*& OutData,int32& OutWidth,int32& OutHeight) final override;
+	virtual void RHIMapStagingSurface(FTextureRHIParamRef Texture, void*& OutData, int32& OutWidth, int32& OutHeight) final override;
 	virtual void RHIUnmapStagingSurface(FTextureRHIParamRef Texture) final override;
-	virtual void RHIReadSurfaceFloatData(FTextureRHIParamRef Texture,FIntRect Rect,TArray<FFloat16Color>& OutData,ECubeFace CubeFace,int32 ArrayIndex,int32 MipIndex) final override;
-	virtual void RHIRead3DSurfaceFloatData(FTextureRHIParamRef Texture,FIntRect Rect,FIntPoint ZMinMax,TArray<FFloat16Color>& OutData) final override;
+	virtual void RHIReadSurfaceFloatData(FTextureRHIParamRef Texture, FIntRect Rect, TArray<FFloat16Color>& OutData, ECubeFace CubeFace, int32 ArrayIndex, int32 MipIndex) final override;
+	virtual void RHIRead3DSurfaceFloatData(FTextureRHIParamRef Texture, FIntRect Rect, FIntPoint ZMinMax, TArray<FFloat16Color>& OutData) final override;
 	virtual FRenderQueryRHIRef RHICreateRenderQuery(ERenderQueryType QueryType) final override;
 	virtual bool RHIGetRenderQueryResult(FRenderQueryRHIParamRef RenderQuery, uint64& OutResult, bool bWait) final override;
 	virtual FTexture2DRHIRef RHIGetViewportBackBuffer(FViewportRHIParamRef Viewport) final override;
@@ -471,7 +471,7 @@ public:
 	virtual void RHIResizeViewport(FViewportRHIParamRef Viewport, uint32 SizeX, uint32 SizeY, bool bIsFullscreen) final override;
 	virtual void RHIResizeViewport(FViewportRHIParamRef Viewport, uint32 SizeX, uint32 SizeY, bool bIsFullscreen, EPixelFormat PreferredPixelFormat) final override;
 	virtual void RHITick(float DeltaTime) final override;
-	virtual void RHISetStreamOutTargets(uint32 NumTargets,const FVertexBufferRHIParamRef* VertexBuffers,const uint32* Offsets) final override;
+	virtual void RHISetStreamOutTargets(uint32 NumTargets, const FVertexBufferRHIParamRef* VertexBuffers, const uint32* Offsets) final override;
 	virtual void RHIBlockUntilGPUIdle() final override;
 	virtual bool RHIGetAvailableResolutions(FScreenResolutionArray& Resolutions, bool bIgnoreRefreshRate) final override;
 	virtual void RHIGetSupportedResolution(uint32& Width, uint32& Height) final override;
@@ -669,7 +669,7 @@ private:
 	{
 		CurrentComputeShader = ComputeShader;
 	}
-	
+
 	const FComputeShaderRHIRef& GetCurrentComputeShader() const
 	{
 		return CurrentComputeShader;
@@ -838,11 +838,11 @@ protected:
 	struct FUnresolvedRTInfo
 	{
 		FUnresolvedRTInfo(FName InResourceName, int32 InMipLevel, int32 InNumMips, int32 InArraySlice, int32 InArraySize)
-		: ResourceName(InResourceName)
-		, MipLevel(InMipLevel)
-		, NumMips(InNumMips)
-		, ArraySlice(InArraySlice)  
-		, ArraySize(InArraySize)
+			: ResourceName(InResourceName)
+			, MipLevel(InMipLevel)
+			, NumMips(InNumMips)
+			, ArraySlice(InArraySlice)
+			, ArraySize(InArraySize)
 		{
 		}
 
@@ -871,10 +871,10 @@ protected:
 	DXGI_ADAPTER_DESC ChosenDescription;
 
 	template<typename BaseResourceType>
-	TD3D11Texture2D<BaseResourceType>* CreateD3D11Texture2D(uint32 SizeX,uint32 SizeY,uint32 SizeZ,bool bTextureArray,bool CubeTexture,uint8 Format,
-		uint32 NumMips,uint32 NumSamples,uint32 Flags,FRHIResourceCreateInfo& CreateInfo);
+	TD3D11Texture2D<BaseResourceType>* CreateD3D11Texture2D(uint32 SizeX, uint32 SizeY, uint32 SizeZ, bool bTextureArray, bool CubeTexture, uint8 Format,
+		uint32 NumMips, uint32 NumSamples, uint32 Flags, FRHIResourceCreateInfo& CreateInfo);
 
-	FD3D11Texture3D* CreateD3D11Texture3D(uint32 SizeX,uint32 SizeY,uint32 SizeZ,uint8 Format,uint32 NumMips,uint32 Flags,FRHIResourceCreateInfo& CreateInfo);
+	FD3D11Texture3D* CreateD3D11Texture3D(uint32 SizeX, uint32 SizeY, uint32 SizeZ, uint8 Format, uint32 NumMips, uint32 Flags, FRHIResourceCreateInfo& CreateInfo);
 
 	template<typename BaseResourceType>
 	TD3D11Texture2D<BaseResourceType>* CreateTextureFromResource(bool bTextureArray, bool bCubeTexture, EPixelFormat Format, uint32 TexCreateFlags, const FClearValueBinding& ClearValueBinding, ID3D11Texture2D* TextureResource);
@@ -894,15 +894,15 @@ protected:
 
 	void ValidateExclusiveDepthStencilAccess(FExclusiveDepthStencil Src) const;
 
-	/** 
-	 * Gets the best supported MSAA settings from the provided MSAA count to check against. 
-	 * 
-	 * @param PlatformFormat		The format of the texture being created 
-	 * @param MSAACount				The MSAA count to check against. 
-	 * @param OutBestMSAACount		The best MSAA count that is suppored.  Could be smaller than MSAACount if it is not supported 
+	/**
+	 * Gets the best supported MSAA settings from the provided MSAA count to check against.
+	 *
+	 * @param PlatformFormat		The format of the texture being created
+	 * @param MSAACount				The MSAA count to check against.
+	 * @param OutBestMSAACount		The best MSAA count that is suppored.  Could be smaller than MSAACount if it is not supported
 	 * @param OutMSAAQualityLevels	The number MSAA quality levels for the best msaa count supported
 	 */
-	void GetBestSupportedMSAASetting( DXGI_FORMAT PlatformFormat, uint32 MSAACount, uint32& OutBestMSAACount, uint32& OutMSAAQualityLevels );
+	void GetBestSupportedMSAASetting(DXGI_FORMAT PlatformFormat, uint32 MSAACount, uint32& OutBestMSAACount, uint32& OutMSAAQualityLevels);
 
 	// shared code for different D3D11 devices (e.g. PC DirectX11 and XboxOne) called
 	// after device creation and GRHISupportsAsyncTextureCreation was set and before resource init
@@ -934,9 +934,9 @@ protected:
 		const D3D11_TEXTURE2D_DESC& ResolveTargetDesc,
 		const FResolveRect& SourceRect,
 		const FResolveRect& DestRect,
-			FD3D11DeviceContext* Direct3DDeviceContext, 
-			typename TPixelShader::FParameter PixelShaderParameter
-		);
+		FD3D11DeviceContext* Direct3DDeviceContext,
+		typename TPixelShader::FParameter PixelShaderParameter
+	);
 
 	// Some platforms might want to override this
 	virtual void SetScissorRectIfRequiredWhenSettingViewport(uint32 MinX, uint32 MinY, uint32 MaxX, uint32 MaxY)
@@ -952,9 +952,9 @@ protected:
 	* @param StagingRectOUT - parameter is filled with the rectangle to read from the returned texture.
 	* @return The CPU readable Texture object.
 	*/
-	TRefCountPtr<ID3D11Texture2D> GetStagingTexture(FTextureRHIParamRef TextureRHI,FIntRect InRect, FIntRect& OutRect, FReadSurfaceDataFlags InFlags);
+	TRefCountPtr<ID3D11Texture2D> GetStagingTexture(FTextureRHIParamRef TextureRHI, FIntRect InRect, FIntRect& OutRect, FReadSurfaceDataFlags InFlags);
 
-	void ReadSurfaceDataNoMSAARaw(FTextureRHIParamRef TextureRHI,FIntRect Rect,TArray<uint8>& OutData, FReadSurfaceDataFlags InFlags);
+	void ReadSurfaceDataNoMSAARaw(FTextureRHIParamRef TextureRHI, FIntRect Rect, TArray<uint8>& OutData, FReadSurfaceDataFlags InFlags);
 
 	void ReadSurfaceDataMSAARaw(FRHICommandList_RecursiveHazardous& RHICmdList, FTextureRHIParamRef TextureRHI, FIntRect Rect, TArray<uint8>& OutData, FReadSurfaceDataFlags InFlags);
 
@@ -1022,11 +1022,11 @@ private:
 };
 
 /** Find an appropriate DXGI format for the input format and SRGB setting. */
-inline DXGI_FORMAT FindShaderResourceDXGIFormat(DXGI_FORMAT InFormat,bool bSRGB)
+inline DXGI_FORMAT FindShaderResourceDXGIFormat(DXGI_FORMAT InFormat, bool bSRGB)
 {
-	if(bSRGB)
+	if (bSRGB)
 	{
-		switch(InFormat)
+		switch (InFormat)
 		{
 		case DXGI_FORMAT_B8G8R8A8_TYPELESS:    return DXGI_FORMAT_B8G8R8A8_UNORM_SRGB;
 		case DXGI_FORMAT_R8G8B8A8_TYPELESS:    return DXGI_FORMAT_R8G8B8A8_UNORM_SRGB;
@@ -1038,7 +1038,7 @@ inline DXGI_FORMAT FindShaderResourceDXGIFormat(DXGI_FORMAT InFormat,bool bSRGB)
 	}
 	else
 	{
-		switch(InFormat)
+		switch (InFormat)
 		{
 		case DXGI_FORMAT_B8G8R8A8_TYPELESS: return DXGI_FORMAT_B8G8R8A8_UNORM;
 		case DXGI_FORMAT_R8G8B8A8_TYPELESS: return DXGI_FORMAT_R8G8B8A8_UNORM;
@@ -1048,14 +1048,14 @@ inline DXGI_FORMAT FindShaderResourceDXGIFormat(DXGI_FORMAT InFormat,bool bSRGB)
 		case DXGI_FORMAT_BC7_TYPELESS:      return DXGI_FORMAT_BC7_UNORM;
 		};
 	}
-	switch(InFormat)
+	switch (InFormat)
 	{
-		case DXGI_FORMAT_R24G8_TYPELESS: return DXGI_FORMAT_R24_UNORM_X8_TYPELESS;
-		case DXGI_FORMAT_R32_TYPELESS: return DXGI_FORMAT_R32_FLOAT;
-		case DXGI_FORMAT_R16_TYPELESS: return DXGI_FORMAT_R16_UNORM;
+	case DXGI_FORMAT_R24G8_TYPELESS: return DXGI_FORMAT_R24_UNORM_X8_TYPELESS;
+	case DXGI_FORMAT_R32_TYPELESS: return DXGI_FORMAT_R32_FLOAT;
+	case DXGI_FORMAT_R16_TYPELESS: return DXGI_FORMAT_R16_UNORM;
 #if DEPTH_32_BIT_CONVERSION
 		// Changing Depth Buffers to 32 bit on Dingo as D24S8 is actually implemented as a 32 bit buffer in the hardware
-		case DXGI_FORMAT_R32G8X24_TYPELESS: return DXGI_FORMAT_R32_FLOAT_X8X24_TYPELESS; 
+	case DXGI_FORMAT_R32G8X24_TYPELESS: return DXGI_FORMAT_R32_FLOAT_X8X24_TYPELESS;
 #endif
 	}
 	return InFormat;
@@ -1064,10 +1064,10 @@ inline DXGI_FORMAT FindShaderResourceDXGIFormat(DXGI_FORMAT InFormat,bool bSRGB)
 /** Find an appropriate DXGI format unordered access of the raw format. */
 inline DXGI_FORMAT FindUnorderedAccessDXGIFormat(DXGI_FORMAT InFormat)
 {
-	switch(InFormat)
+	switch (InFormat)
 	{
-		case DXGI_FORMAT_B8G8R8A8_TYPELESS: return DXGI_FORMAT_B8G8R8A8_UNORM;
-		case DXGI_FORMAT_R8G8B8A8_TYPELESS: return DXGI_FORMAT_R8G8B8A8_UNORM;
+	case DXGI_FORMAT_B8G8R8A8_TYPELESS: return DXGI_FORMAT_B8G8R8A8_UNORM;
+	case DXGI_FORMAT_R8G8B8A8_TYPELESS: return DXGI_FORMAT_R8G8B8A8_UNORM;
 	}
 	return InFormat;
 }
@@ -1075,35 +1075,35 @@ inline DXGI_FORMAT FindUnorderedAccessDXGIFormat(DXGI_FORMAT InFormat)
 /** Find the appropriate depth-stencil targetable DXGI format for the given format. */
 inline DXGI_FORMAT FindDepthStencilDXGIFormat(DXGI_FORMAT InFormat)
 {
-	switch(InFormat)
+	switch (InFormat)
 	{
-		case DXGI_FORMAT_R24G8_TYPELESS:
-			return DXGI_FORMAT_D24_UNORM_S8_UINT;
+	case DXGI_FORMAT_R24G8_TYPELESS:
+		return DXGI_FORMAT_D24_UNORM_S8_UINT;
 #if DEPTH_32_BIT_CONVERSION
 		// Changing Depth Buffers to 32 bit on Dingo as D24S8 is actually implemented as a 32 bit buffer in the hardware
-		case DXGI_FORMAT_R32G8X24_TYPELESS:
-			return DXGI_FORMAT_D32_FLOAT_S8X24_UINT;
+	case DXGI_FORMAT_R32G8X24_TYPELESS:
+		return DXGI_FORMAT_D32_FLOAT_S8X24_UINT;
 #endif
-		case DXGI_FORMAT_R32_TYPELESS:
-			return DXGI_FORMAT_D32_FLOAT;
-		case DXGI_FORMAT_R16_TYPELESS:
-			return DXGI_FORMAT_D16_UNORM;
+	case DXGI_FORMAT_R32_TYPELESS:
+		return DXGI_FORMAT_D32_FLOAT;
+	case DXGI_FORMAT_R16_TYPELESS:
+		return DXGI_FORMAT_D16_UNORM;
 	};
 	return InFormat;
 }
 
-/** 
- * Returns whether the given format contains stencil information.  
+/**
+ * Returns whether the given format contains stencil information.
  * Must be passed a format returned by FindDepthStencilDXGIFormat, so that typeless versions are converted to their corresponding depth stencil view format.
  */
 inline bool HasStencilBits(DXGI_FORMAT InFormat)
 {
-	switch(InFormat)
+	switch (InFormat)
 	{
 	case DXGI_FORMAT_D24_UNORM_S8_UINT:
 		return true;
 #if  DEPTH_32_BIT_CONVERSION
-	// Changing Depth Buffers to 32 bit on Dingo as D24S8 is actually implemented as a 32 bit buffer in the hardware
+		// Changing Depth Buffers to 32 bit on Dingo as D24S8 is actually implemented as a 32 bit buffer in the hardware
 	case DXGI_FORMAT_D32_FLOAT_S8X24_UINT:
 		return true;
 #endif
@@ -1146,9 +1146,9 @@ public:
 	}
 
 	template< typename t_A, typename t_B >
-	static t_A RoundUpToNextMultiple( const t_A& a, const t_B& b )
+	static t_A RoundUpToNextMultiple(const t_A& a, const t_B& b)
 	{
-		return ( ( a - 1 ) / b + 1 ) * b;
+		return ((a - 1) / b + 1) * b;
 	}
 
 	static FFastVRAMAllocator* GetFastVRAMAllocator();
@@ -1235,20 +1235,20 @@ public:
 		check(InRange.IsValid());
 		check(InRange.IsOccupied());
 
-		for(uint32 i = 0, Num = Entries.Num(); i < Num; ++i)
+		for (uint32 i = 0, Num = Entries.Num(); i < Num; ++i)
 		{
 			FRange& ref = Entries[i];
 
-			if(!ref.IsOccupied())
+			if (!ref.IsOccupied())
 			{
 				int32 OverlapSize = ref.GetEnd() - InRange.GetStart();
 
-				if(OverlapSize > 0)
+				if (OverlapSize > 0)
 				{
 					int32 FrontCutSize = InRange.GetStart() - ref.GetStart();
 
 					// there is some front part we cut off
-					if(FrontCutSize > 0)
+					if (FrontCutSize > 0)
 					{
 						FRange NewFrontRange;
 
@@ -1272,7 +1272,7 @@ public:
 					check(BackCutSize >= 0);
 
 					// there is some back part we cut off
-					if(BackCutSize > 0)
+					if (BackCutSize > 0)
 					{
 						FRange NewBackRange;
 
@@ -1298,22 +1298,22 @@ public:
 	{
 		check(InSize > 0);
 
-		for(uint32 i = 0, Num = Entries.Num(); i < Num; ++i)
+		for (uint32 i = 0, Num = Entries.Num(); i < Num; ++i)
 		{
 			FRange& ref = Entries[i];
 
-			if(!ref.IsOccupied())
+			if (!ref.IsOccupied())
 			{
 				uint32 RefSize = ref.ComputeSize();
 
 				// take the first fitting one - later we could optimize for minimal fragmentation
-				if(RefSize >= InSize)
+				if (RefSize >= InSize)
 				{
 					ref.MakeOccupied(InSize);
 
 					FRange Ret = ref;
 
-					if(RefSize > InSize)
+					if (RefSize > InSize)
 					{
 						FRange NewRange;
 
@@ -1353,11 +1353,11 @@ public:
 	{
 		uint32 Ret = 0;
 
-		for(uint32 i = 0, Num = Entries.Num(); i < Num; ++i)
+		for (uint32 i = 0, Num = Entries.Num(); i < Num; ++i)
 		{
 			const FRange& ref = Entries[i];
 
-			if(!ref.IsOccupied())
+			if (!ref.IsOccupied())
 			{
 				uint32 RefSize = ref.ComputeSize();
 
@@ -1374,7 +1374,7 @@ private:
 	{
 		check(!Entries[StartIndex].IsOccupied());
 
-		if(StartIndex && !Entries[StartIndex-1].IsOccupied())
+		if (StartIndex && !Entries[StartIndex - 1].IsOccupied())
 		{
 			// Seems we can combine with the element before,
 			// searching further is not needed as we assume the buffer was compact before the last change.
@@ -1384,11 +1384,11 @@ private:
 		uint32 ElementsToRemove = 0;
 		uint32 SizeGained = 0;
 
-		for(uint32 i = StartIndex + 1, Num = Entries.Num(); i < Num; ++i)
+		for (uint32 i = StartIndex + 1, Num = Entries.Num(); i < Num; ++i)
 		{
 			FRange& ref = Entries[i];
 
-			if(!ref.IsOccupied())
+			if (!ref.IsOccupied())
 			{
 				++ElementsToRemove;
 				SizeGained += ref.ComputeSize();
@@ -1399,7 +1399,7 @@ private:
 			}
 		}
 
-		if(ElementsToRemove)
+		if (ElementsToRemove)
 		{
 			Entries.RemoveAt(StartIndex + 1, ElementsToRemove, false);
 			Entries[StartIndex].ExtendUnoccupied(SizeGained);
